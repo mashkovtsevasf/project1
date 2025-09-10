@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .api-test {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #result {
+            margin-top: 10px;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Task Management App</h1>
+        <p>Приложение успешно развернуто на Vercel!</p>
+        
+        <div class="api-test">
+            <h3>Тест API:</h3>
+            <button onclick="testAPI()">Проверить API</button>
+            <button onclick="getTasks()">Получить задачи</button>
+            <div id="result"></div>
+        </div>
+        
+        <p><strong>API Endpoints:</strong></p>
+        <ul>
+            <li>GET /api/health - проверка здоровья сервера</li>
+            <li>GET /api/tasks - получить все задачи</li>
+            <li>POST /api/tasks - создать новую задачу</li>
+            <li>PUT /api/tasks/:id - обновить задачу</li>
+            <li>DELETE /api/tasks/:id - удалить задачу</li>
+        </ul>
+    </div>
+
+    <script>
+        async function testAPI() {
+            const result = document.getElementById('result');
+            try {
+                const response = await fetch('/api/health');
+                const data = await response.json();
+                result.textContent = '✅ API работает!\n' + JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = '❌ Ошибка API: ' + error.message;
+            }
+        }
+
+        async function getTasks() {
+            const result = document.getElementById('result');
+            try {
+                const response = await fetch('/api/tasks');
+                const data = await response.json();
+                result.textContent = '📋 Задачи:\n' + JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = '❌ Ошибка получения задач: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
