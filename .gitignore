@@ -43,3 +43,4 @@ coverage/
 *.db
 *.sqlite
 *.sqlite3
+frontend/.angular/
